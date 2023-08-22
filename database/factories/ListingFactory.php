@@ -17,7 +17,8 @@ class ListingFactory extends Factory
     public function definition()
     {
         return [
-            'products' => fake()->numberBetween(1, 10),
+            'products' => fake()->word(),
+            'quantity' => fake()->numberBetween(1, 10),
             'description' => fake()->text(),
             'address' => fake()->address(),
             'price' => fake()->numberBetween(10_000, 200_000)

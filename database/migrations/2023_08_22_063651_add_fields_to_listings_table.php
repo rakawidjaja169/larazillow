@@ -14,7 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('listings', function (Blueprint $table) {
-            $table->unsignedTinyInteger('products');
+            $table->tinyText('products');
+
+            $table->unsignedTinyInteger('quantity');
 
             $table->tinyText('description');
             $table->tinyText('address');
@@ -35,7 +37,7 @@ return new class extends Migration
         // });
 
         Schema::dropColumns('listings', [
-            'products', 'description', 'address', 'price'
+            'products', 'quantity', 'description', 'address', 'price'
         ]);
     }
 };
