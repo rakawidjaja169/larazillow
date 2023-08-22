@@ -9,6 +9,7 @@ class Listing extends Model
 {
     use HasFactory;
 
+    // protected $fillable is used to specify the fields that can be mass-assigned from Listing::create([]);
     protected $fillable = [
         'products',
         'quantity',
