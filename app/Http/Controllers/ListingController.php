@@ -54,11 +54,12 @@ class ListingController extends Controller
             ->with('success', 'Listing created successfully!');
     }
 
+    
     /**
-     * Display the specified resource.
+     * Display a listing.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Listing $listing The listing to display.
+     * @return mixed The rendered inertia page.
      */
     public function show(Listing $listing)
     {
@@ -71,26 +72,44 @@ class ListingController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Edit the listing.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Listing $listing The listing to be edited.
+     * @return mixed Returns the result of the `inertia` function.
      */
-    public function edit($id)
+    public function edit(Listing $listing)
     {
-        //
+        return inertia(
+            'Listing/Edit',
+            [
+                'listing' => $listing
+            ]
+        );
     }
 
+    
     /**
-     * Update the specified resource in storage.
+     * Updates a listing with the given request data.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request the HTTP request object
+     * @param Listing $listing the listing to be updated
+     * @return RedirectResponse the redirect response
+     * @throws Some_Exception_Class if the validation fails
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Listing $listing)
     {
-        //
+        $listing->update(
+            $request->validate([
+                'products' => 'required|string',
+                'quantity' => 'required|integer|min:0|max:20',
+                'description' => 'required|string',
+                'address' => 'required|string',
+                'price' => 'required|integer|min:1|max:500000',
+            ])
+        );
+
+        return redirect()->route('listing.index')
+            ->with('success', 'Listing edited successfully!');
     }
 
     /**
