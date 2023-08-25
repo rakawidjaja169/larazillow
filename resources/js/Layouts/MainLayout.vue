@@ -21,7 +21,9 @@
             </div>
           </div>
         </div>
+        <Link :href="route('listing.create')" class="btn-primary">+ Create Listing</Link>
         <button
+          class="pl-8"
           @click="toggleDark()"
         >
           <svg
@@ -112,7 +114,6 @@ const toggleDark = useToggle(isDark)
 const navigation = [
   { name: 'Dashboard', href: route('dashboard') },
   { name: 'Listings', href: route('listing.index') },
-  { name: 'Create Listing', href: route('listing.create') },
 ]
 
 const page = usePage()
