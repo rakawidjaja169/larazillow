@@ -11,12 +11,13 @@
     {{ listing.address }}
   </td>
   <td class="px-6 py-4">
-    {{ listing.price }}
+    <Price :price="listing.price" />
   </td>
 </template>
 
 <script setup>
 import { Link } from '@inertiajs/inertia-vue3'
+import Price from './Price.vue'
 defineProps({
   listing: Object,
 })
