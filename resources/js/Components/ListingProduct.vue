@@ -17,7 +17,7 @@
 
 <script setup>
 import { Link } from '@inertiajs/inertia-vue3'
-import Price from './Price.vue'
+import Price from '@/Components/Price.vue'
 defineProps({
   listing: Object,
 })
