@@ -23,7 +23,7 @@
 
 <script setup>
 import Price from '@/Components/Price.vue'
-import Box from '../../Components/UI/Box.vue'
+import Box from '@/Components/UI/Box.vue'
 
 defineProps({
   listing: Object,
