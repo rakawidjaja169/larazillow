@@ -28,8 +28,7 @@
 </template>
   
 <script setup>
-import { useForm } from '@inertiajs/inertia-vue3'
-import { Link } from '@inertiajs/inertia-vue3'
+import { useForm, Link } from '@inertiajs/inertia-vue3'
 import Box from '@/Components/UI/Box.vue'
 
 const form = useForm({

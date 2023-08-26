@@ -51,12 +51,19 @@
           Create Account
         </button>
       </div>
+      <Box class="md:col-span-7 flex items-center">
+        <div class="w-full text-center font-medium text-gray-500">
+          Already have an account? 
+          <Link :href="route('login')">Sign-In</Link>
+        </div>
+      </Box>
     </div>
   </form>
 </template>
   
 <script setup>
-import { useForm } from '@inertiajs/inertia-vue3'
+import { useForm, Link } from '@inertiajs/inertia-vue3'
+import Box from '@/Components/UI/Box.vue'
 
 const form = useForm({
   name: null,
