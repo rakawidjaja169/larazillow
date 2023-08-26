@@ -1,6 +1,6 @@
 <template>
-  <form @submit.prevent="login">
-    <div class="w-[30rem] mx-auto">
+  <form class="w-full" @submit.prevent="login">
+    <div class="mx-auto md:w-1/2">
       <div>
         <label for="email" class="label">E-mail</label>
         <input id="email" v-model="form.email" type="text" class="input" />
@@ -14,12 +14,23 @@
       <div class="mt-4">
         <button class="btn-primary w-full" type="submit">Login</button>
       </div>
+      <Box class="md:col-span-7 flex items-center">
+        <div class="w-full text-center font-medium text-gray-500">Forgot password?</div>
+      </Box>
+      <Box class="md:col-span-7 flex items-center">
+        <div class="w-full text-center font-medium text-gray-500">
+          Don't have an account? 
+          <Link :href="route('user-account.create')">Sign-Up</Link>
+        </div>
+      </Box>
     </div>
   </form>
 </template>
   
 <script setup>
 import { useForm } from '@inertiajs/inertia-vue3'
+import { Link } from '@inertiajs/inertia-vue3'
+import Box from '@/Components/UI/Box.vue'
 
 const form = useForm({
   email: null,
