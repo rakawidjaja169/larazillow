@@ -113,5 +113,5 @@ const flashSuccess = computed(
   () => page.props.value.flash.success,
 )
 
-console.log('Current route:', route().current())
+// console.log('Current route:', route().current())
 </script>
