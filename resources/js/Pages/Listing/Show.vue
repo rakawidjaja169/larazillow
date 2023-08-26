@@ -9,6 +9,15 @@
           Basic info
         </template>
         <Price :price="listing.price" class="text-2xl font-bold" />
+        <div class="text-lg">
+          <ListingProduct :listing="listing" />
+        </div>
+        <div>
+          <ListingDescription :listing="listing" />
+        </div>
+        <div class="text-gray-500">
+          <ListingAddress :listing="listing" />
+        </div>
       </Box>
 
       <Box>
@@ -39,6 +48,9 @@
 </template>
 
 <script setup>
+import ListingProduct from '@/Components/ListingProduct.vue'
+import ListingDescription from '@/Components/ListingDescription.vue'
+import ListingAddress from '@/Components/ListingAddress.vue'
 import Price from '@/Components/Price.vue'
 import Box from '@/Components/UI/Box.vue'
 
