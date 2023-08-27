@@ -31,7 +31,7 @@
       </thead>
       <tbody>
         <tr
-          v-for="listing in listings"
+          v-for="listing in listings.data"
           :key="listing.id" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
         >
           <td class="w-4 p-4">
@@ -71,6 +71,6 @@ import Price from '@/Components/Price.vue'
 import MonthlyPayment from '@/Components/MonthlyPayment.vue'
 
 defineProps({
-  listings: Array,
+  listings: Object,
 })
 </script>
