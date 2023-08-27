@@ -24,7 +24,7 @@ Route::get('/hello', [IndexController::class, 'show'])
     ->middleware('auth');
 
 Route::resource('listing', ListingController::class)
-    ->except('destroy')
+    ->only('index', 'show')
     ->middleware('auth');
 
 Route::get('login', [AuthController::class, 'create'])
@@ -42,5 +42,5 @@ Route::prefix('user')
     ->middleware('auth')
     ->group(function () {
         Route::resource('listing', UserListingController::class)
-            ->only(['index', 'destroy']);
+            ->except(['show']);
     });

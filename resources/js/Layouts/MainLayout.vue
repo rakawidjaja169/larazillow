@@ -10,7 +10,7 @@
             <Bars3Icon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
             <XMarkIcon v-else class="block h-6 w-6" aria-hidden="true" />
           </DisclosureButton>
-          <Link :href="route('listing.create')" class="block md:hidden ml-5">
+          <Link :href="route('user.listing.create')" class="block md:hidden ml-5">
             <PlusCircleIcon class="block h-6 w-6" aria-hidden="true" />
           </Link>
         </div>
@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-          <Link :href="route('listing.create')" class="btn-primary mr-3 p-3 hidden md:block">+ Create Listing</Link>
+          <Link :href="route('user.listing.create')" class="btn-primary mr-3 p-3 hidden md:block">+ Create Listing</Link>
 
           <button
             type="button"

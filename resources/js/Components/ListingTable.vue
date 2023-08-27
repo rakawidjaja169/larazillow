@@ -24,9 +24,9 @@
           <th scope="col" class="px-6 py-3">
             Monthly Payment
           </th>
-          <th scope="col" class="px-6 py-3">
+          <!-- <th scope="col" class="px-6 py-3">
             Action
-          </th>
+          </th> -->
         </tr>
       </thead>
       <tbody>
@@ -60,9 +60,9 @@
             <Price :price="listing.price" />
           </td>
           <MonthlyPayment :listing="listing" />
-          <td class="flex items-center px-6 py-4 space-x-3">
+          <!-- <td class="flex items-center px-6 py-4 space-x-3">
             <Link :href="route('listing.edit', { listing: listing.id })" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</Link>
-          </td>
+          </td> -->
         </tr>
       </tbody>
     </table>
