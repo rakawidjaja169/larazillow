@@ -26,11 +26,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'test2@example.com',
         ]);
 
-        \App\Models\Listing::factory(20)->create();
+        // \App\Models\Listing::factory(20)->create();
 
         // Testing Purposes
-        // \App\Models\Listing::factory(20)->create([
-        //     'by_user_id' => 1
-        // ]);
+        \App\Models\Listing::factory(20)->create([
+            'by_user_id' => 1
+        ]);
     }
 }
