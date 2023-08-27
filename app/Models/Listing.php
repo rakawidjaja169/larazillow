@@ -52,6 +52,9 @@ class Listing extends Model
         )->when(
             $filters['priceTo'] ?? false,
             fn ($query, $value) => $query->where('price', '<=', $value)
+        )->when(
+            $filters['deleted'] ?? false,
+            fn ($query, $value) => $query->withTrashed()
         );
     }
 }

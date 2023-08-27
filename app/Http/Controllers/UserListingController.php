@@ -23,11 +23,20 @@ class UserListingController extends Controller
      *
      * @return Some_Return_Value
      */
-    public function index()
+    public function index(Request $request)
     {
+        $filters = [
+            'deleted' => $request->boolean('deleted')
+        ];
+
         return inertia(
             'User/Index',
-            ['listings' => Auth::user()->listings]
+            ['listings' => Auth::user()
+                ->listings()
+                ->mostRecent()
+                ->filter($filters)
+                ->get()
+            ]
         );
     }
 
