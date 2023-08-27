@@ -41,6 +41,12 @@ Route::prefix('user')
     ->name('user.')
     ->middleware('auth')
     ->group(function () {
+        Route::name('listing.restore')
+            ->put(
+                'listing/{listing}/restore',
+                [UserListingController::class, 'restore']
+            )->withTrashed();
         Route::resource('listing', UserListingController::class)
-            ->except(['show']);
+            ->except(['show'])
+            ->withTrashed();
     });

@@ -7,9 +7,9 @@
     </section>
 
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-2">
-      <Box v-for="listing in listings.data" :key="listing.id">
+      <Box v-for="listing in listings.data" :key="listing.id" :class="{ 'border-dashed': listing.deleted_at }">
         <div class="flex flex-col md:flex-row gap-2 md:items-center justify-between">
-          <div>
+          <div :class="{ 'opacity-25': listing.deleted_at }">
             <div class="xl:flex items-center gap-2">
               <Price :price="listing.price" class="text-2xl font-medium" />
             </div>
@@ -23,8 +23,33 @@
               :href="route('listing.show', { listing: listing.id })"
               target="_blank"
             >Preview</a>
-            <Link class="btn-outline text-xs font-medium" :href="route('user.listing.edit', { listing: listing.id })">Edit</Link>
-            <Link :href="route('user.listing.destroy', { listing: listing.id })" method="DELETE" as="button" class="btn-outline text-xs font-medium">Remove</Link>
+
+            <Link 
+              class="btn-outline text-xs font-medium" 
+              :href="route('user.listing.edit', { listing: listing.id })"
+            >
+              Edit
+            </Link>
+
+            <Link 
+              v-if="!listing.deleted_at" 
+              :href="route('user.listing.destroy', { listing: listing.id })" 
+              method="DELETE" 
+              as="button" 
+              class="btn-outline text-xs font-medium"
+            >
+              Remove
+            </Link>
+
+            <Link
+              v-else 
+              class="btn-outline text-xs font-medium" 
+              :href="route('user.listing.restore', { listing: listing.id })" 
+              as="button" 
+              method="put"
+            >
+              Restore
+            </Link>
           </div>
         </div>
       </Box>
