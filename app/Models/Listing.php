@@ -26,4 +26,9 @@ class Listing extends Model
             'by_user_id'
         );
     }
+
+    public function scopeMostRecent($query)
+    {
+        return $this->orderByDesc('created_at');
+    }
 }
