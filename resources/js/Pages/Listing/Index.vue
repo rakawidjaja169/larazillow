@@ -1,4 +1,6 @@
 <template>
+  <Filters />
+
   <ListingTable :listings="listings" />
 
   <div v-if="listings.data.length" class="w-full flex justify-center mt-8 mb-8">
@@ -7,6 +9,7 @@
 </template>
 
 <script setup>
+import Filters from '@/Pages/Listing/Components/Filters.vue'
 import ListingTable from '@/Components/ListingTable.vue'
 import Pagination from '@/Components/UI/Pagination.vue'
 
