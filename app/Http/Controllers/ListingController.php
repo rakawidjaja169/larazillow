@@ -28,34 +28,29 @@ class ListingController extends Controller
         $filters = $request->only([
             'products', 'quantity', 'priceFrom', 'priceTo'
         ]);
-        $query = Listing::orderByDesc('created_at');
-
-        if ($filters['products'] ?? false) {
-            $query->where('products', 'LIKE', '%' . $filters['products'] . '%');
-        }        
-
-        if ($filters['quantity'] ?? false) {
-            if ($filters['quantity'] === '6') {
-                $query->where('quantity', '>=', 6);
-            } else {
-                $query->where('quantity', $filters['quantity']);
-            }
-        }
-
-        if ($filters['priceFrom'] ?? false) {
-            $query->where('price', '>=', $filters['priceFrom']);
-        }
-
-        if ($filters['priceTo'] ?? false) {
-            $query->where('price', '<=', $filters['priceTo']);
-        }        
 
         return inertia(
             'Listing/Index',
             [
                 'filters' => $filters,
-                'listings' => $query->paginate(10)
-                    ->withQueryString()
+                'listings' => Listing::orderByDesc('created_at')
+                    ->when(
+                        $filters['products'] ?? false,
+                        fn ($query, $value) => $query->where('products', 'LIKE', '%' . $value . '%')
+                    )
+                    ->when(
+                        $filters['quantity'] ?? false,
+                        fn ($query, $value) => $value === '6' 
+                            ? $query->where('quantity', '>=', 6) 
+                            : $query->where('quantity', $value)
+                    )                    
+                    ->when(
+                        $filters['priceFrom'] ?? false,
+                        fn ($query, $value) => $query->where('price', '>=', $value)
+                    )->when(
+                        $filters['priceTo'] ?? false,
+                        fn ($query, $value) => $query->where('price', '<=', $value)
+                    )->paginate(10)->withQueryString()
             ]
         );
     }
