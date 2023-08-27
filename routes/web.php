@@ -53,5 +53,5 @@ Route::prefix('user')
             ->withTrashed();
 
         Route::resource('listing.image', UserListingImageController::class)
-            ->only(['create', 'store']);
+            ->only(['create', 'store', 'destroy']);
     });
