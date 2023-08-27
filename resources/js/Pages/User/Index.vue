@@ -17,40 +17,48 @@
             <ListingDescription :listing="listing" />
             <ListingAddress :listing="listing" class="text-gray-500" />
           </div>
-          <div class="flex items-center gap-1 text-gray-600 dark:text-gray-300">
-            <a
-              class="btn-outline text-xs font-medium" 
-              :href="route('listing.show', { listing: listing.id })"
-              target="_blank"
-            >Preview</a>
-
-            <Link 
-              class="btn-outline text-xs font-medium" 
-              :href="route('user.listing.edit', { listing: listing.id })"
+          <section>
+            <div
+              class="flex items-center gap-1 text-gray-600 dark:text-gray-300"
             >
-              Edit
-            </Link>
+              <a
+                class="btn-outline text-xs font-medium" 
+                :href="route('listing.show', { listing: listing.id })"
+                target="_blank"
+              >Preview</a>
 
-            <Link 
-              v-if="!listing.deleted_at" 
-              :href="route('user.listing.destroy', { listing: listing.id })" 
-              method="DELETE" 
-              as="button" 
-              class="btn-outline text-xs font-medium"
-            >
-              Remove
-            </Link>
+              <Link 
+                class="btn-outline text-xs font-medium" 
+                :href="route('user.listing.edit', { listing: listing.id })"
+              >
+                Edit
+              </Link>
 
-            <Link
-              v-else 
-              class="btn-outline text-xs font-medium" 
-              :href="route('user.listing.restore', { listing: listing.id })" 
-              as="button" 
-              method="put"
-            >
-              Restore
-            </Link>
-          </div>
+              <Link 
+                v-if="!listing.deleted_at" 
+                :href="route('user.listing.destroy', { listing: listing.id })" 
+                method="DELETE" 
+                as="button" 
+                class="btn-outline text-xs font-medium"
+              >
+                Remove
+              </Link>
+
+              <Link
+                v-else 
+                class="btn-outline text-xs font-medium" 
+                :href="route('user.listing.restore', { listing: listing.id })" 
+                as="button" 
+                method="put"
+              >
+                Restore
+              </Link>
+            </div>
+
+            <div class="mt-2">
+              <Link :href="route('user.listing.image.create', { listing: listing.id })" class="block w-full btn-outline text-xs font-medium text-center">Images</Link>
+            </div>
+          </section>
         </div>
       </Box>
     </section>
