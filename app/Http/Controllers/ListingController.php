@@ -34,23 +34,9 @@ class ListingController extends Controller
             [
                 'filters' => $filters,
                 'listings' => Listing::mostRecent()
-                    ->when(
-                        $filters['products'] ?? false,
-                        fn ($query, $value) => $query->where('products', 'LIKE', '%' . $value . '%')
-                    )
-                    ->when(
-                        $filters['quantity'] ?? false,
-                        fn ($query, $value) => $value === '6' 
-                            ? $query->where('quantity', '>=', 6) 
-                            : $query->where('quantity', $value)
-                    )                    
-                    ->when(
-                        $filters['priceFrom'] ?? false,
-                        fn ($query, $value) => $query->where('price', '>=', $value)
-                    )->when(
-                        $filters['priceTo'] ?? false,
-                        fn ($query, $value) => $query->where('price', '<=', $value)
-                    )->paginate(10)->withQueryString()
+                    ->filter($filters)
+                    ->paginate(10)
+                    ->withQueryString()
             ]
         );
     }

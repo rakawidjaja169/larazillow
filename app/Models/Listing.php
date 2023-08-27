@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -27,8 +28,29 @@ class Listing extends Model
         );
     }
 
-    public function scopeMostRecent($query)
+    public function scopeMostRecent(Builder $query): Builder
     {
-        return $this->orderByDesc('created_at');
+        return $query->orderByDesc('created_at');
+    }
+
+    public function scopeFilter(Builder $query, array $filters): Builder
+    {
+        return $query->when(
+            $filters['products'] ?? false,
+            fn ($query, $value) => $query->where('products', 'LIKE', '%' . $value . '%')
+        )
+        ->when(
+            $filters['quantity'] ?? false,
+            fn ($query, $value) => $value === '6' 
+                ? $query->where('quantity', '>=', 6) 
+                : $query->where('quantity', $value)
+        )                    
+        ->when(
+            $filters['priceFrom'] ?? false,
+            fn ($query, $value) => $query->where('price', '>=', $value)
+        )->when(
+            $filters['priceTo'] ?? false,
+            fn ($query, $value) => $query->where('price', '<=', $value)
+        );
     }
 }
