@@ -1,5 +1,5 @@
 <template>
-  <Filters />
+  <Filters :filters="filters" />
 
   <ListingTable :listings="listings" />
 
@@ -15,5 +15,6 @@ import Pagination from '@/Components/UI/Pagination.vue'
 
 defineProps({
   listings: Object,
+  filters: Object,
 })
 </script>
