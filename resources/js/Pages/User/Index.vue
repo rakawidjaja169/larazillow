@@ -2,7 +2,7 @@
   <div class="w-full">
     <h1 class="text-3xl mb-4 flex justify-center">Your Listings</h1>
     <section class="mb-8 ml-1">
-      <Filters />
+      <Filters :filters="filters" />
     </section>
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-2">
       <Box v-for="listing in listings" :key="listing.id">
@@ -35,5 +35,8 @@ import Box from '@/Components/UI/Box.vue'
 import Filters from '@/Pages/User/Components/Filters.vue'
 import { Link } from '@inertiajs/inertia-vue3'
 
-defineProps({listings: Array})
+defineProps({
+  listings: Array,
+  filters: Object,
+})
 </script>

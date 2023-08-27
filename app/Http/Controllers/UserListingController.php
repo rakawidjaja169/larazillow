@@ -32,7 +32,8 @@ class UserListingController extends Controller
 
         return inertia(
             'User/Index',
-            ['listings' => Auth::user()
+            ['filters' => $filters,
+             'listings' => Auth::user()
                 ->listings()
                 // ->mostRecent()
                 ->filter($filters)
