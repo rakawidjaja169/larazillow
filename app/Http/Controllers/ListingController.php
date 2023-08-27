@@ -40,7 +40,7 @@ class ListingController extends Controller
      */
     public function store(Request $request)
     {
-        Listing::create(
+        $request->user()->listings()->create(
             $request->validate([
                 'products' => 'required|string',
                 'quantity' => 'required|integer|min:0|max:20',
