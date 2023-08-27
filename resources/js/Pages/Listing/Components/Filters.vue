@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="filter">
+  <form class="w-full flex justify-center" @submit.prevent="filter">
     <div class="mb-8 mt-4 flex flex-wrap gap-2">
       <div class="flex flex-nowrap items-center">
         <input
@@ -13,7 +13,7 @@
         <select v-model="filterForm.quantity" class="input-filter w-28">
           <option :value="null">Quantity</option>
           <option v-for="n in 5" :key="n" :value="n">{{ n }}</option>
-          <option>6+</option>
+          <option :value="6">6+</option>
         </select>
       </div>
   

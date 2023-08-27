@@ -25,14 +25,36 @@ class ListingController extends Controller
      */
     public function index(Request $request)
     {
+        $filters = $request->only([
+            'products', 'quantity', 'priceFrom', 'priceTo'
+        ]);
+        $query = Listing::orderByDesc('created_at');
+
+        if ($filters['products'] ?? false) {
+            $query->where('products', 'LIKE', '%' . $filters['products'] . '%');
+        }        
+
+        if ($filters['quantity'] ?? false) {
+            if ($filters['quantity'] === '6') {
+                $query->where('quantity', '>=', 6);
+            } else {
+                $query->where('quantity', $filters['quantity']);
+            }
+        }
+
+        if ($filters['priceFrom'] ?? false) {
+            $query->where('price', '>=', $filters['priceFrom']);
+        }
+
+        if ($filters['priceTo'] ?? false) {
+            $query->where('price', '<=', $filters['priceTo']);
+        }        
+
         return inertia(
             'Listing/Index',
             [
-                'filters' => $request->only([
-                    'products', 'quantity', 'priceFrom', 'priceTo'
-                ]),
-                'listings' => Listing::orderByDesc('created_at')
-                    ->paginate(10)
+                'filters' => $filters,
+                'listings' => $query->paginate(10)
                     ->withQueryString()
             ]
         );

@@ -30,6 +30,11 @@
         </tr>
       </thead>
       <tbody>
+        <tr v-if="listings.data.length === 0" class="bg-white dark:bg-gray-800">
+          <td colspan="7" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">
+            No Data
+          </td>
+        </tr>
         <tr
           v-for="listing in listings.data"
           :key="listing.id" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
