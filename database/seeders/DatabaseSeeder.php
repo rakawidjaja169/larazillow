@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'is_admin' => true
         ]);
 
         \App\Models\User::factory()->create([
@@ -29,8 +30,12 @@ class DatabaseSeeder extends Seeder
         // \App\Models\Listing::factory(20)->create();
 
         // Testing Purposes
-        \App\Models\Listing::factory(20)->create([
+        \App\Models\Listing::factory(10)->create([
             'by_user_id' => 1
+        ]);
+        
+        \App\Models\Listing::factory(10)->create([
+            'by_user_id' => 2
         ]);
     }
 }

@@ -11,6 +11,20 @@ class ListingPolicy
     use HandlesAuthorization;
 
     /**
+     * A description of the entire PHP function.
+     *
+     * @param User|null $user The user object or null.
+     * @param mixed $ability The ability parameter.
+     * @return bool|null Returns true if the user is an admin, otherwise returns null.
+     */
+    public function before(?User $user, $ability)
+    {
+        if ($user->is_admin /*&& $ability === 'update'*/) {
+            return true;
+        }
+    }
+    
+    /**
      * Determine whether the user can view any models.
      * If you want to allow all users to view all listings without authentication, use this (?User $user)
      *
