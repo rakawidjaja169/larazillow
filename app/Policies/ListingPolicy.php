@@ -12,6 +12,7 @@ class ListingPolicy
 
     /**
      * Determine whether the user can view any models.
+     * If you want to allow all users to view all listings without authentication, use this (?User $user)
      *
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
