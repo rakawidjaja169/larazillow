@@ -56,7 +56,12 @@
             </div>
 
             <div class="mt-2">
-              <Link :href="route('user.listing.image.create', { listing: listing.id })" class="block w-full btn-outline text-xs font-medium text-center">Images</Link>
+              <Link 
+                :href="route('user.listing.image.create', { listing: listing.id })" 
+                class="block w-full btn-outline text-xs font-medium text-center"
+              >
+                Images ({{ listing.images_count }})
+              </Link>
             </div>
           </section>
         </div>
