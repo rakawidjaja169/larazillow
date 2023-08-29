@@ -7,7 +7,7 @@
 
         <p class="text-gray-500 font-medium mt-1">Quantity</p>
         <input
-          v-model.number="form.quantity"
+          v-model.number="quantityInput"
           type="range" :min="1"
           :max="10" step="1"
           class="mt-2 w-full h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
@@ -26,13 +26,15 @@
 <script setup>
 import Box from '@/Components/UI/Box.vue'
 import { useForm } from '@inertiajs/inertia-vue3'
-import { watch } from 'vue'
+import { ref, watch } from 'vue'
 import { debounce } from 'lodash'
 
 const props = defineProps({
   listingId: Number,
   quantity: Number,
 })
+
+const quantityInput = ref(props.quantity)
 
 const form = useForm({
   solution: null,
@@ -50,7 +52,7 @@ const makeOffer = () => form.post(
 
 const emit = defineEmits(['quantityUpdated'])
 watch(
-  () => form.quantity, 
+  () => quantityInput.value, 
   debounce((value) => emit('quantityUpdated', value), 200),
 )
 </script>
