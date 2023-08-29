@@ -7,6 +7,7 @@ use App\Http\Controllers\ListingController;
 use App\Http\Controllers\UserListingController;
 use App\Http\Controllers\UserListingImageController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ListingOfferController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,10 @@ Route::get('/hello', [IndexController::class, 'show'])
 Route::resource('listing', ListingController::class)
     ->only('index', 'show')
     ->middleware('auth');
+
+Route::resource('listing.offer', ListingOfferController::class)
+    ->middleware('auth')
+    ->only(['store']);
 
 Route::get('login', [AuthController::class, 'create'])
     ->name('login');
