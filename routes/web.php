@@ -54,7 +54,6 @@ Route::prefix('user')
             )->withTrashed();
 
         Route::resource('listing', UserListingController::class)
-            ->except(['show'])
             ->withTrashed();
 
         Route::resource('listing.image', UserListingImageController::class)

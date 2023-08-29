@@ -37,9 +37,25 @@ class UserListingController extends Controller
                 ->listings()
                 ->filter($filters)
                 ->withCount('images')
+                ->withCount('offers')
                 ->paginate(6)
                 ->withQueryString()
             ]
+        );
+    }
+
+    /**
+     * Show a user listing.
+     *
+     * @param Listing $listing The listing to show.
+     *
+     * @return mixed The inertia response.
+     */
+    public function show(Listing $listing)
+    {
+        return inertia(
+            'User/Show',
+            ['listing' => $listing->load('offers')]
         );
     }
 
