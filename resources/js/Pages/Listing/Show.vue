@@ -17,7 +17,7 @@
           </template>
           <Price :price="listing.price" class="text-2xl font-bold" />
           <div class="text-lg">
-            <ListingProduct :listing="listing" />
+            <ListingProduct :listing="listing" :quantity="offer" />
           </div>
           <div>
             <ListingDescription :listing="listing" />
@@ -76,6 +76,8 @@
         <MakeOffer 
           v-if="user"
           :listing-id="listing.id"
+          :quantity="listing.quantity"
+          @quantity-updated="offer = $event"
         />
       </div>
     </div>
@@ -101,6 +103,8 @@ const duration = ref(25)
 const props = defineProps({
   listing: Object,
 })
+
+const offer = ref(props.listing.quantity)
 
 const { monthlyPayment, totalPaid, totalInterest } =useMonthlyPayment(
   props.listing.price, interestRate, duration,

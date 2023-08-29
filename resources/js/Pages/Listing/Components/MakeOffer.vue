@@ -4,6 +4,14 @@
     <div>
       <form @submit.prevent="makeOffer">
         <input v-model.number="form.solution" type="text" class="input" />
+
+        <p class="text-gray-500 font-medium mt-1">Quantity</p>
+        <input
+          v-model.number="form.quantity"
+          type="range" :min="1"
+          :max="10" step="1"
+          class="mt-2 w-full h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+        />
   
         <button type="submit" class="btn-outline w-full mt-2 text-sm">
           Submit
@@ -18,9 +26,12 @@
 <script setup>
 import Box from '@/Components/UI/Box.vue'
 import { useForm } from '@inertiajs/inertia-vue3'
+import { watch } from 'vue'
+import { debounce } from 'lodash'
 
 const props = defineProps({
   listingId: Number,
+  quantity: Number,
 })
 
 const form = useForm({
@@ -35,5 +46,11 @@ const makeOffer = () => form.post(
     preserveScroll: true,
     preserveState: true,
   },
+)
+
+const emit = defineEmits(['quantityUpdated'])
+watch(
+  () => form.quantity, 
+  debounce((value) => emit('quantityUpdated', value), 200),
 )
 </script>
