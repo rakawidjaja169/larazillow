@@ -61,8 +61,16 @@ class User extends Authenticatable
     public function listings(): HasMany
     {
         return $this->hasMany(
-            \App\Models\Listing::class,
+            Listing::class,
             'by_user_id'
+        );
+    }
+
+    public function offers(): HasMany
+    {
+        return $this->hasMany(
+            Offer::class,
+            'solver_id'
         );
     }
 }
