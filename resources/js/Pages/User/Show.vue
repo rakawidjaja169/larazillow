@@ -15,7 +15,11 @@
     </Box>
 
     <div v-else class="md:col-span-7 items-center">
-      This is displayed when there are offers!
+      <Offer
+        v-for="offer in listing.offers" 
+        :key="offer.id" class="mb-4"
+        :offer="offer"
+      />
     </div>
 
     <Box class="md:col-span-5">
@@ -24,7 +28,7 @@
       </template>
       <Price :price="listing.price" class="text-2xl font-bold" />
       <div class="text-lg">
-        <ListingProduct :listing="listing" :quantity="offer" />
+        <ListingProduct :listing="listing" :quantity="listing.quantity" />
       </div>
       <div>
         <ListingDescription :listing="listing" />
@@ -42,6 +46,7 @@ import ListingDescription from '@/Components/ListingDescription.vue'
 import ListingAddress from '@/Components/ListingAddress.vue'
 import Price from '@/Components/Price.vue'
 import Box from '@/Components/UI/Box.vue'
+import Offer from '@/Components/Offer.vue'
 import { Link } from '@inertiajs/inertia-vue3'
 import { computed } from 'vue'
 
