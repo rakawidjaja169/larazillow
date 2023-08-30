@@ -55,7 +55,7 @@ class UserListingController extends Controller
     {
         return inertia(
             'User/Show',
-            ['listing' => $listing->load('offers')]
+            ['listing' => $listing->load('offers', 'offers.solver')]
         );
     }
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\UserListingController;
 use App\Http\Controllers\UserListingImageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListingOfferController;
+use App\Http\Controllers\UserListingAcceptOfferController;
 use App\Http\Controllers\GoogleSocialiteController;
 
 /*
@@ -60,6 +61,12 @@ Route::prefix('user')
 
         Route::resource('listing', UserListingController::class)
             ->withTrashed();
+
+        Route::name('offer.accept')
+            ->put(
+              'offer/{offer}/accept',
+              UserListingAcceptOfferController::class
+            );
 
         Route::resource('listing.image', UserListingImageController::class)
             ->only(['create', 'store', 'destroy']);

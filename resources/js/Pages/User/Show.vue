@@ -1,43 +1,45 @@
 <template>
-  <div class="mb-4">
-    <Link 
-      :href="route('user.listing.index')"
-    >
-      ← Go back to Listings
-    </Link>
-  </div>
-
-  <section class="flex flex-col-reverse md:grid md:grid-cols-12 gap-4">
-    <Box v-if="!hasOffers" class="flex md:col-span-7 items-center">
-      <div class="w-full text-center font-medium text-gray-500">
-        No offers
-      </div>
-    </Box>
-
-    <div v-else class="md:col-span-7 items-center">
-      <Offer
-        v-for="offer in listing.offers" 
-        :key="offer.id" class="mb-4"
-        :offer="offer"
-      />
+  <div class="w-full mx-auto">
+    <div class="mb-4">
+      <Link 
+        :href="route('user.listing.index')"
+      >
+        ← Go back to Listings
+      </Link>
     </div>
 
-    <Box class="md:col-span-5">
-      <template #header>
-        Basic info
-      </template>
-      <Price :price="listing.price" class="text-2xl font-bold" />
-      <div class="text-lg">
-        <ListingProduct :listing="listing" :quantity="listing.quantity" />
+    <section class="flex flex-col-reverse md:grid md:grid-cols-12 gap-4">
+      <Box v-if="!hasOffers" class="flex md:col-span-7 items-center">
+        <div class="w-full text-center font-medium text-gray-500">
+          No offers
+        </div>
+      </Box>
+
+      <div v-else class="md:col-span-7 items-center">
+        <Offer
+          v-for="offer in listing.offers" 
+          :key="offer.id" class="mb-4"
+          :offer="offer"
+        />
       </div>
-      <div>
-        <ListingDescription :listing="listing" />
-      </div>
-      <div class="text-gray-500">
-        <ListingAddress :listing="listing" />
-      </div>
-    </Box>
-  </section>
+
+      <Box class="md:col-span-5">
+        <template #header>
+          Basic info
+        </template>
+        <Price :price="listing.price" class="text-2xl font-bold" />
+        <div class="text-lg">
+          <ListingProduct :listing="listing" :quantity="listing.quantity" />
+        </div>
+        <div>
+          <ListingDescription :listing="listing" />
+        </div>
+        <div class="text-gray-500">
+          <ListingAddress :listing="listing" />
+        </div>
+      </Box>
+    </section>
+  </div>
 </template>
 
 <script setup>
