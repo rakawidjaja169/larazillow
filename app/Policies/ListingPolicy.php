@@ -45,7 +45,11 @@ class ListingPolicy
      */
     public function view(User $user, Listing $listing)
     {
-        return true;
+        if ($listing->by_user_id === $user?->id) {
+            return true;
+        }
+
+        return $listing->accepted_at === null;
     }
 
     /**
