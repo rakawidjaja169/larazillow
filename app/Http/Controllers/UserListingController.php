@@ -35,6 +35,11 @@ class UserListingController extends Controller
             ['filters' => $filters,
              'listings' => Auth::user()
                 ->listings()
+                ->with([
+                    'offers' => function ($query) {
+                        $query->whereNotNull('accepted_at');
+                    },
+                ])
                 ->filter($filters)
                 ->withCount('images')
                 ->withCount('offers')
