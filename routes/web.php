@@ -8,6 +8,7 @@ use App\Http\Controllers\UserListingController;
 use App\Http\Controllers\UserListingImageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListingOfferController;
+use App\Http\Controllers\GoogleSocialiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,10 @@ Route::resource('listing', ListingController::class)
 Route::resource('listing.offer', ListingOfferController::class)
     ->middleware('auth')
     ->only(['store']);
+
+Route::get('auth/google', [GoogleSocialiteController::class, 'redirectToGoogle'])
+    ->name('auth.google');
+Route::get('callback/google', [GoogleSocialiteController::class, 'handleCallback']);
 
 Route::get('login', [AuthController::class, 'create'])
     ->name('login');

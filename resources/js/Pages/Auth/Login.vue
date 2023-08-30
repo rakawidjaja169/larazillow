@@ -19,6 +19,12 @@
       </Box>
       <Box class="md:col-span-7 flex items-center">
         <div class="w-full text-center font-medium text-gray-500">
+          Sign-In using 
+          <a :href="route('auth.google')">Google</a>
+        </div>
+      </Box>
+      <Box class="md:col-span-7 flex items-center">
+        <div class="w-full text-center font-medium text-gray-500">
           Don't have an account? 
           <Link :href="route('user-account.create')">Sign-Up</Link>
         </div>
