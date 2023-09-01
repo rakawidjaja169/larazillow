@@ -20,7 +20,7 @@
         "vue": "^3.2.39"
     },
     "dependencies": {
-        "@headlessui/vue": "^0.0.0-insiders.5a1e2e4",
+        "@headlessui/vue": "^1.7.16",
         "@heroicons/vue": "^2.0.18",
         "@inertiajs/vue3": "^1.0.11",
         "@vueuse/core": "^10.3.0"
