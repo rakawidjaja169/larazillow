@@ -13,6 +13,7 @@ use App\Http\Controllers\UserListingAcceptOfferController;
 use App\Http\Controllers\GoogleSocialiteController;
 use Illuminate\Notifications\Events\NotificationSent;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,13 @@ Route::delete('logout', [AuthController::class, 'destroy'])
 Route::get('/email/verify', function () {
         return inertia('Auth/VerifyEmail');
     })->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    
+    return redirect()->route('listing.index')
+        ->with('success', 'Email was verified!');
+    })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::resource('user-account', UserAccountController::class)
     ->only(['create', 'store']);
