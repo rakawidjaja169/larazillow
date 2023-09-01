@@ -97,7 +97,7 @@ import OfferMade from '@/Components/OfferMade.vue'
 
 import { ref } from 'vue'
 import { useMonthlyPayment } from '@/Composables/useMonthlyPayment'
-import { usePage } from '@inertiajs/inertia-vue3'
+import { usePage } from '@inertiajs/vue3'
 import { computed } from 'vue'
 
 const interestRate = ref(2.5)
@@ -116,6 +116,6 @@ const { monthlyPayment, totalPaid, totalInterest } =useMonthlyPayment(
 
 const page = usePage()
 const user = computed(
-  () => page.props.value.user,
+  () => page.props.user,
 )
 </script>

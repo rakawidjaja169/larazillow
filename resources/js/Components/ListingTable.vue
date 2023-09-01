@@ -70,7 +70,7 @@
 </template>
 
 <script setup>
-import { Link } from '@inertiajs/inertia-vue3'
+import { Link } from '@inertiajs/vue3'
 import Price from '@/Components/Price.vue'
 import MonthlyPayment from '@/Components/MonthlyPayment.vue'
 

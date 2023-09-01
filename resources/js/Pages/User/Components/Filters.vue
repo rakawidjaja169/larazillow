@@ -30,7 +30,7 @@
   
 <script setup>
 import { reactive, watch, computed } from 'vue'
-import { Inertia } from '@inertiajs/inertia'
+import { router } from '@inertiajs/vue3'
 import { debounce } from 'lodash'
 
 const sortLabels = {
@@ -70,7 +70,7 @@ const filterForm = reactive({
 
 // reactive / ref / computed
 watch(
-  filterForm, debounce(() => Inertia.get(
+  filterForm, debounce(() => router.get(
     route('user.listing.index'),
     filterForm,
     { preserveState: true, preserveScroll: true },
