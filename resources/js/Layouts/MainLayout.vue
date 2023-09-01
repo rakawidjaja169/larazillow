@@ -42,14 +42,18 @@
             </template>
           </button>
 
-          <button type="button" class="relative rounded-full bg-gray-800 p-3 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-            <span class="absolute -inset-1.5" />
-            <span class="sr-only">View notifications</span>
-            <BellIcon class="h-6 w-6" aria-hidden="true" />
-            <span v-if="notificationCount" class="absolute top-0 right-0 bg-red-600 rounded-full w-6 h-6 text-white">
-              {{ notificationCount }}
-            </span>
-          </button>
+          <Link
+            :href="route('notification.index')"
+          >
+            <button type="button" class="relative rounded-full bg-gray-800 p-3 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+              <span class="absolute -inset-1.5" />
+              <span class="sr-only">View notifications</span>
+              <BellIcon class="h-6 w-6" aria-hidden="true" />
+              <span v-if="notificationCount" class="absolute top-0 right-0 bg-red-600 rounded-full w-6 h-6 text-white">
+                {{ notificationCount }}
+              </span>
+            </button>
+          </Link>
 
           <!-- Profile dropdown -->
           <Menu as="div" class="relative ml-3">
