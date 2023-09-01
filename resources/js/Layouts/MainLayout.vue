@@ -46,6 +46,9 @@
             <span class="absolute -inset-1.5" />
             <span class="sr-only">View notifications</span>
             <BellIcon class="h-6 w-6" aria-hidden="true" />
+            <span class="absolute top-0 right-0 bg-red-600 rounded-full w-6 h-6 text-white">
+              {{ notificationCount }}
+            </span>
           </button>
 
           <!-- Profile dropdown -->
@@ -111,7 +114,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { Link, usePage } from '@inertiajs/vue3'
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { Bars3Icon, BellIcon, MoonIcon, SunIcon, XMarkIcon, PlusCircleIcon } from '@heroicons/vue/24/outline'
@@ -132,6 +135,10 @@ const flashSuccess = computed(
 
 const user = computed(
   () => page.props.user,
+)
+
+const notificationCount = computed(
+  () => Math.min(page.props.user.notificationCount, 9),
 )
 // console.log('Current route:', route().current())
 </script>
