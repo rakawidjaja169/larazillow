@@ -46,7 +46,7 @@
             <span class="absolute -inset-1.5" />
             <span class="sr-only">View notifications</span>
             <BellIcon class="h-6 w-6" aria-hidden="true" />
-            <span class="absolute top-0 right-0 bg-red-600 rounded-full w-6 h-6 text-white">
+            <span v-if="notificationCount" class="absolute top-0 right-0 bg-red-600 rounded-full w-6 h-6 text-white">
               {{ notificationCount }}
             </span>
           </button>
@@ -83,7 +83,7 @@
                     :href="route('logout')" 
                     method="delete" 
                     as="button" 
-                    :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700 w-full']"
+                    :class="[active ? 'bg-gray-100' : '', 'block text-sm text-gray-700 w-full']"
                   >
                     <button class="w-full px-4 py-2" @click="close">Sign out</button>
                   </Link>
