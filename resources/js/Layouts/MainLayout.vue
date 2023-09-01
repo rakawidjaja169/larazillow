@@ -110,7 +110,7 @@
   </Disclosure>
   <main>
     <div class="container mx-auto p-4 flex flex-wrap justify-center">
-      <div v-if="flashSuccess" class="mb-4 border rounded-md shadow-sm border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900 p-2">
+      <div v-if="flashSuccess" class="w-full mb-4 border rounded-md shadow-sm border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900 p-2">
         {{ flashSuccess }}
       </div>
       <slot>Default</slot>
