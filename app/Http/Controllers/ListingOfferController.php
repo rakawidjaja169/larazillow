@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Offer;
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use App\Notifications\OfferMade;
 
 class ListingOfferController extends Controller
 {
@@ -12,12 +13,16 @@ class ListingOfferController extends Controller
     {
         $this->authorize('view', $listing);
         
-        $listing->offers()->save(
+        $offer = $listing->offers()->save(
             Offer::make(
                 $request->validate([
                     'solution' => 'required|string',
                 ])
             )->solver()->associate($request->user())
+        );
+        
+        $listing->owner->notify(
+            new OfferMade($offer)
         );
 
         return redirect()->back()->with(
