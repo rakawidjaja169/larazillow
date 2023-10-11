@@ -1,19 +1,23 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\UserAccountController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\UserListingController;
-use App\Http\Controllers\UserListingImageController;
 use App\Http\Controllers\ListingOfferController;
 use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\NotificationSeenController;
-use App\Http\Controllers\UserListingAcceptOfferController;
 use App\Http\Controllers\GoogleSocialiteController;
+use App\Http\Controllers\NotificationSeenController;
+use App\Http\Controllers\UserListingImageController;
 use Illuminate\Notifications\Events\NotificationSent;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\UserListingAcceptOfferController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +56,10 @@ Route::get('auth/google', [GoogleSocialiteController::class, 'redirectToGoogle']
     ->name('auth.google');
 Route::get('callback/google', [GoogleSocialiteController::class, 'handleCallback']);
 
+Route::get('register', [RegisterController::class, 'create'])
+    ->name('register');
+Route::post('register', [RegisterController::class, 'store'])
+    ->name('register.store');
 Route::get('login', [AuthController::class, 'create'])
     ->name('login');
 Route::post('login', [AuthController::class, 'store'])
@@ -77,7 +85,8 @@ Route::post('/email/verification-notification', function (Request $request) {
     })->middleware(['auth', 'throttle:6,1'])->name('verification.send');      
 
 Route::resource('user-account', UserAccountController::class)
-    ->only(['create', 'store']);
+    ->middleware(['auth', 'verified'])
+    ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
 
 Route::prefix('user')
     ->name('user.')
@@ -101,3 +110,6 @@ Route::prefix('user')
         Route::resource('listing.image', UserListingImageController::class)
             ->only(['create', 'store', 'destroy']);
     });
+
+Route::resource('role', RoleController::class)->middleware(['auth', 'verified'])->except(['show']);
+Route::resource('permission', PermissionController::class)->middleware(['auth', 'verified'])->only(['index']);

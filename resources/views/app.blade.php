@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="icon" href="/favicon.webp" />
+
     <title>LaraVue</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" />
     @routes
@@ -12,7 +14,7 @@
     @inertiaHead
 </head>
 
-<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-300">
+<body class="background-color">
     @inertia
 </body>
 

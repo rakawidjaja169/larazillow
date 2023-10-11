@@ -1,5 +1,5 @@
 <template>
-  <form class="w-full mx-auto" @submit.prevent="register">
+  <form class="w-full mx-auto" @submit.prevent="update">
     <div class="grid grid-cols-6 gap-4">
       <div class="relative z-0 w-full mb-6 group col-span-6">
         <input id="name" v-model="form.name" type="text" name="name" class="input peer" placeholder=" " />
@@ -51,7 +51,7 @@
           class="btn-primary"
           type="submit"
         >
-          Create Account
+          Edit Account
         </button>
       </div>
     </div>
@@ -61,17 +61,21 @@
 <script setup>
 import { useForm } from '@inertiajs/vue3'
 
-defineProps({
-  roles: Object,
+const props = defineProps({
+  user: Object,
+  roles: Array,
+  userRole: Object,
 })
 
 const form = useForm({
-  name: null,
-  email: null,
+  name: props.user.name,
+  email: props.user.email,
   password: null,
   password_confirmation: null,
-  role: null,
+  role: props.userRole[0].id,
 })
 
-const register = () => form.post(route('user-account.store'))
+const update = () => form.put(
+  route('user-account.update', { user_account: props.user.id }),
+)
 </script>

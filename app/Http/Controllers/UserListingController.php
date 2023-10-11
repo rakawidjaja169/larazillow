@@ -16,6 +16,11 @@ class UserListingController extends Controller
     public function __construct()
     {
         $this->authorizeResource(Listing::class, 'listing');
+
+        $this->middleware('can:post list', ['only' => ['index', 'show']]);
+        $this->middleware('can:post create', ['only' => ['create', 'store']]);
+        $this->middleware('can:post edit', ['only' => ['edit', 'update']]);
+        $this->middleware('can:post delete', ['only' => ['destroy']]);
     }
     
     /**
@@ -113,7 +118,6 @@ class UserListingController extends Controller
             ]
         );
     }
-
     
     /**
      * Updates a listing with the given request data.

@@ -31,13 +31,13 @@
       </div>
   
       <button type="submit" class="btn-normal">Filter</button>
-      <button type="reset" @click="clear">Clear</button>
+      <button type="reset" class="btn-danger" @click="clear">Clear</button>
     </div>
   </form>
 </template>
 
 <script setup>
-import {useForm} from '@inertiajs/vue3'
+import { useForm } from '@inertiajs/vue3'
 
 const props = defineProps({
   filters: Object,
