@@ -1,7 +1,7 @@
 <template>
   <div class="w-full flex flex-col">
     <Link 
-      v-if="permissions.includes('role create')" 
+      v-if="permissions.includes('role-create')" 
       class="btn-primary w-40 mb-2 text-center"
       :href="route('role.create')"
     >

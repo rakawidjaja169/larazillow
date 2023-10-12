@@ -17,7 +17,9 @@
           :value="permission.id" 
           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
         />
-        <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ permission.name }}</label>
+        <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+          <Permission :permission="permission.name" />
+        </label>
         <div v-if="form.errors.permission" class="input-error">
           {{ form.errors.permission }}
         </div>
@@ -32,6 +34,7 @@
     
 <script setup>
 import { useForm } from '@inertiajs/vue3'
+import Permission from '@/Components/Permission.vue'
   
 const props = defineProps({
   role: Object,

@@ -3,10 +3,12 @@
 </template>
   
 <script setup>
-import {computed} from 'vue'
+import { computed } from 'vue'
+
 const props = defineProps({
   price: [Number, String],
 })
+
 const formattedPrice = computed(
   () => Number(props.price).toLocaleString('id-ID', {
     style: 'currency',
