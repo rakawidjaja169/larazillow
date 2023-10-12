@@ -17,12 +17,12 @@ class ListingPolicy
      * @param mixed $ability The ability parameter.
      * @return bool|null Returns true if the user is an admin, otherwise returns null.
      */
-    public function before(?User $user, $ability)
-    {
-        if ($user?->is_admin /*&& $ability === 'update'*/) {
-            return true;
-        }
-    }
+    // public function before(?User $user, $ability)
+    // {
+    //     if ($user?->is_admin /*&& $ability === 'update'*/) {
+    //         return true;
+    //     }
+    // }
     
     /**
      * Determine whether the user can view any models.
@@ -72,7 +72,7 @@ class ListingPolicy
      */
     public function update(User $user, Listing $listing)
     {
-        return $user->id === $listing->by_user_id;;
+        return $user->id === $listing->by_user_id;
     }
 
     /**
@@ -84,7 +84,7 @@ class ListingPolicy
      */
     public function delete(User $user, Listing $listing)
     {
-        return $user->id === $listing->by_user_id;;
+        return $user->id === $listing->by_user_id;
     }
 
     /**
@@ -96,7 +96,7 @@ class ListingPolicy
      */
     public function restore(User $user, Listing $listing)
     {
-        return $user->id === $listing->by_user_id;;
+        return $user->id === $listing->by_user_id;
     }
 
     /**
@@ -108,6 +108,6 @@ class ListingPolicy
      */
     public function forceDelete(User $user, Listing $listing)
     {
-        return $user->id === $listing->by_user_id;;
+        return $user->id === $listing->by_user_id;
     }
 }

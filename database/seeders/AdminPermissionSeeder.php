@@ -77,7 +77,6 @@ class AdminPermissionSeeder extends Seeder
         $user = \App\Models\User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
-            'is_admin' => true
         ]);
         $user->assignRole($role3);
 
