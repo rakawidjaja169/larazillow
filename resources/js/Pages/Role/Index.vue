@@ -7,7 +7,7 @@
     >
       <p>Create Role</p>
     </Link>
-    <div class="w-3/4 m-auto relative overflow-x-auto shadow-md rounded-lg">
+    <div class="md:w-3/4 md:m-auto relative overflow-x-auto shadow-md rounded-lg">
       <table class="w-full max-w-7xl text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-100 uppercase bg-sdh-thead dark:bg-gray-700 dark:text-gray-400">
           <tr>

@@ -17,10 +17,10 @@ class UserListingController extends Controller
     {
         $this->authorizeResource(Listing::class, 'listing');
 
-        $this->middleware('can:post list', ['only' => ['index', 'show']]);
-        $this->middleware('can:post create', ['only' => ['create', 'store']]);
-        $this->middleware('can:post edit', ['only' => ['edit', 'update']]);
-        $this->middleware('can:post delete', ['only' => ['destroy']]);
+        $this->middleware('can:post-list', ['only' => ['index', 'show']]);
+        $this->middleware('can:post-create', ['only' => ['create', 'store']]);
+        $this->middleware('can:post-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('can:post-delete', ['only' => ['destroy']]);
     }
     
     /**
