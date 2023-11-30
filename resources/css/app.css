@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .background-color {
+    @apply bg-[#f4f6f9] dark:bg-gray-900 text-gray-800 dark:text-gray-300
+  }
+
+  .label {
+    @apply peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6
+  }
+
+  .label-select {
+    @apply block mb-2 text-sm font-medium text-gray-900 dark:text-white
+  }
+
+  .input {
+    @apply block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600
+  }
+
+  .input-select {
+    @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+  }
+
+  .input-error {
+    @apply text-sm text-red-500 dark:text-red-400
+  }
+
+  .input-filter {
+    @apply placeholder:text-gray-400 dark:placeholder:text-gray-600 border border-gray-200 dark:border-gray-700 rounded-md text-sm font-medium text-gray-600 dark:text-gray-400 dark:bg-gray-800
+  }
+  
+  .input-filter-l {
+    @apply placeholder:text-gray-400 dark:placeholder:text-gray-600 border border-gray-200 dark:border-gray-700 rounded-t-md rounded-l-md rounded-b-md rounded-r-none text-sm font-medium text-gray-600 dark:text-gray-400 dark:bg-gray-800
+  }
+
+  .input-filter-r {
+    @apply placeholder:text-gray-400 dark:placeholder:text-gray-600 border border-l-0 border-gray-200 dark:border-gray-700 rounded-t-md rounded-l-none rounded-b-md rounded-r-md text-sm font-medium text-gray-600 dark:text-gray-400 dark:bg-gray-800
+  }
+
+  .btn-normal {
+    @apply bg-sdh-primary hover:shadow-md hover:shadow-blue-200 text-white font-medium py-2 px-5 rounded-md
+  }
+
+  .btn-primary {
+    @apply bg-indigo-600 hover:shadow hover:shadow-indigo-500 dark:bg-indigo-800 text-white font-medium py-2 px-5 rounded-md
+  }
+
+  .btn-success {
+    @apply bg-sdh-success hover:shadow-md hover:shadow-red-300 dark:bg-red-800 text-white font-medium py-2 px-5 rounded-md
+  }
+
+  .btn-danger {
+    @apply bg-sdh-danger hover:shadow-md hover:shadow-red-300 dark:bg-red-800 text-white font-medium py-2 px-5 rounded-md
+  }
+
+  .btn-outline {
+    @apply py-2 px-5 rounded-md border shadow-sm border-gray-300 dark:border-gray-800 hover:border-gray-400 hover:bg-gray-50 dark:hover:border-gray-700 dark:hover:bg-gray-800
+  }
+}
